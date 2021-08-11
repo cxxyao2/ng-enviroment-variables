@@ -76,6 +76,47 @@ ng build --configuration=stage-client-a
 
 * in angular.json , add env.js in assets list
 * create service and provider
+** service is a simple class having 2 public properties.
+```
+export class EnvService {
+  public apiUrl = '';
+  public enableDebug = true;
+  constructor() {}
+}
+
+```
+** provider provides an object including all variables in env.js
+```
+// EnvServiceProvider
+import { EnvService } from './env.service';
+
+export const EnvServiceFactory = () => {
+  // Create env
+  const env = new EnvService();
+
+  // Read environment variables  from browser window
+  const browserWindow = window || {};
+  const browserWindowEnv = browserWindow['__env'] || {};
+
+  // Assign environment variables from browser window to env
+  // In the current implementation, properties from env.js
+  // If needed, a deep merge can be performed
+  for (const key in browserWindowEnv) {
+    if (browserWindowEnv.hasOwnProperty(key)) {
+      env[key] = window['__env'][key];
+    }
+  }
+
+  return env;
+};
+
+export const EnvServiceProvider = {
+  provide: EnvService,
+  useFactory: EnvServiceFactory,
+  deps: [],
+};
+
+```
 * add this provider to app.module.ts provides
 * inject the service into components or other elements as needed  
 > <strong>Advantage</strong>: When we need change the environemnt variables, we just modify the env.js file  , refresh the browser and need not rebuild the app.
