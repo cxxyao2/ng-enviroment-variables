@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "config": "node set-env-simple.js",
+    "config": "ts-node set-env.ts",
     "start": "npm run config && node server",
     "build": "npm run config && ng build",
     "test": "npm run config && ng test",
@@ -23,7 +23,6 @@
     "@angular/platform-browser": "~11.0.4",
     "@angular/platform-browser-dynamic": "~11.0.4",
     "@angular/router": "~11.0.4",
-    "child_process": "^1.0.2",
     "colors": "^1.4.0",
     "dotenv": "^10.0.0",
     "protractor": "~7.0.0",
