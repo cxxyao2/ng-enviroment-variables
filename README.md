@@ -40,12 +40,12 @@
 }
 ```
 
-ng build --configuration=stage-client-a
-default: we should rebuild for every configuration
+ng build --configuration=stage-client-a  
+> <strong>Default</strong>: we should rebuild for every configuration
 
-## solution 2: multiple configurations using independent env.js
+## solution 2: multiple configurations without rebuild by  using independent env.js
 
-> > 1，under src folder, create an env.js. Attach environment variables(e.g. backend api url) to window object.
+* Under src folder, create an env.js. Attach environment variables(e.g. backend api url) to window object. 
 
 ```
 (function (window) {
@@ -60,22 +60,22 @@ default: we should rebuild for every configuration
 })(this);
 
 ```
-
-link env.js at head section of index.htm
+* link env.js at head section of index.htm
 
 ```
 // index.html
 <html>
-<head>
-  <script src="env.js"></script>
-<head>
-<body>
+  <head>
+    <script src="env.js"></script>
+  <head>
+  <body>
 
-</body>
+  </body>
 </html>
 ```
 
-3，in angular.json , add env.js in assets list
-4，create service and provider
-5, add this provider to app.module.ts provides
-6, inject the service into components or other elements as needed.
+* in angular.json , add env.js in assets list
+* create service and provider
+* add this provider to app.module.ts provides
+* inject the service into components or other elements as needed  
+> <strong>Advantage</strong>: When we need change the environemnt variables, we just modify the env.js file  , refresh the browser and need not rebuild the app.
