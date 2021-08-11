@@ -75,17 +75,20 @@ ng build --configuration=stage-client-a
 ```
 
 * in angular.json , add env.js in assets list
-* create service and provider
-** service is a simple class having 2 public properties.
+* create service and provider  
+    - EnvService is a simple class having 2 public properties.  
+    - Provider instantiates the EnvService. In a word, the factory method  returns an object with necessary properties coming from env variables in env.js
+  
 ```
+// EnvService
 export class EnvService {
   public apiUrl = '';
   public enableDebug = true;
   constructor() {}
 }
 
-```
-** provider provides an object including all variables in env.js
+```  
+    
 ```
 // EnvServiceProvider
 import { EnvService } from './env.service';
