@@ -1,2 +1,25 @@
 <div>hello {{ userName }}</div>
 <app-home></app-home>
+<div class="container">
+  <button class="btn btn-primary" (click)="searchBookById()">
+    Find One Book
+  </button>
+
+  <button class="btn btn-secondary" (click)="addOneBook()">Add One Book</button>
+  <table class="table table_dark table-striped">
+    <thead>
+      <tr>
+        <th scope="col">Id</th>
+        <th scope="col">Name</th>
+        <th scope="col">Genre</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let book of allBooks">
+        <td>{{ book.id }}</td>
+        <td>{{ book.name }}</td>
+        <td>{{ book.genre }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
