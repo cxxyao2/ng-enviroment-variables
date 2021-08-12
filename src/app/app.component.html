@@ -1,25 +1,85 @@
-<div>hello {{ userName }}</div>
-<app-home></app-home>
 <div class="container">
-  <button class="btn btn-primary" (click)="searchBookById()">
-    Find One Book
-  </button>
+  <h3 class="p-2">Change Env.js For Multiple Configurations</h3>
+  <app-home></app-home>
+</div>
 
-  <button class="btn btn-secondary" (click)="addOneBook()">Add One Book</button>
-  <table class="table table_dark table-striped">
-    <thead>
-      <tr>
-        <th scope="col">Id</th>
-        <th scope="col">Name</th>
-        <th scope="col">Genre</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let book of allBooks">
-        <td>{{ book.id }}</td>
-        <td>{{ book.name }}</td>
-        <td>{{ book.genre }}</td>
-      </tr>
-    </tbody>
-  </table>
+<hr class="dropdown-divider m-4" />
+
+<div class="container">
+  <h3 class="m-2">Query and Mutation in GraphQL by Apollo Client</h3>
+  <form class="row g-3 m-2">
+    <div class="col-auto">
+      <label for="txtSearch" class="visually-hidden">Search By BookId</label>
+      <input
+        type="text"
+        id="txtSearch"
+        name="txtSearch"
+        class="form-control"
+        [(ngModel)]="bookId"
+        placeholder="BookId,e.g. 60fb61b6d5b7b184eb38204a"
+      />
+    </div>
+    <div class="col-auto">
+      <button class="btn btn-primary" (click)="searchBookById()">
+        Find One Book
+      </button>
+    </div>
+    <div class="h-1 text-primary">...</div>
+
+    <div class="col-auto">
+      <label for="txtBookName" class="form-label">Book Name:</label>
+      <input
+        type="text"
+        [(ngModel)]="bookName"
+        name="txtBookName"
+        class="form-control"
+        id="txtBookName"
+        placeholder="The Little Prince"
+      />
+    </div>
+    <div class="col-auto">
+      <label for="txtBookGenre" class="form-label">Book Genre:</label>
+      <input
+        type="text"
+        [(ngModel)]="genre"
+        name="txtBookGenre"
+        class="form-control"
+        id="txtBookGenre"
+        placeholder="fantasy"
+      />
+    </div>
+    <div class="col-auto">
+      <label for="txtAuthorId" class="form-label">Author ID:</label>
+      <input
+        type="text"
+        [(ngModel)]="authorId"
+        name="txtAuthorId"
+        class="form-control"
+        id="txtAuthorId"
+        placeholder="60fb5e9216313d8298f0799a"
+      />
+    </div>
+    <div class="col-auto">
+      <button type="submit" class="btn btn-primary" (click)="addOneBook()">
+        Add One Book
+      </button>
+    </div>
+
+    <table class="table table_dark table-striped">
+      <thead>
+        <tr>
+          <th scope="col">Id</th>
+          <th scope="col">Name</th>
+          <th scope="col">Genre</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let book of allBooks; trackBy: bookTrackBy">
+          <td>{{ book.id }}</td>
+          <td>{{ book.name }}</td>
+          <td>{{ book.genre }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </form>
 </div>

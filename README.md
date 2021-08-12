@@ -126,9 +126,13 @@ export const EnvServiceProvider = {
 - add this provider to app.module.ts provides
 - inject the service into components or other elements as needed
   > <strong>Advantage</strong>: When we need change the environemnt variables, we just modify the env.js file , refresh the browser and need not rebuild the app.
-<hr/>
-# apollo client, graphQL  
+  <hr/>
 
-* ng add apollo-angular
+# apollo client, graphQL
 
-* backend repository  [graphQL backend](https://github.com/cxxyao2/graphql_mongo1)
+- ng add apollo-angular
+
+- backend repository [graphQL backend](https://github.com/cxxyao2/graphql_mongo1)
+- screenshot
+
+* ![graphQL](assets/result.png)

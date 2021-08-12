@@ -27,6 +27,7 @@ const Get_OneBook = gql`
 const AddBook = gql`
   mutation addBook($name: String!, $genre: String!, $authorId: ID!) {
     addBook(name: $name, genre: $genre, authorId: $authorId) {
+      id
       name
       genre
       author {
@@ -46,7 +47,10 @@ export class AppComponent implements OnInit {
   title = 'environment variable & graphQL';
   allBooks: Book[] = [];
   searchBook?: Book;
-  bookId = '60fb61b6d5b7b184eb38204a';
+  bookId = '';
+  bookName?: string;
+  genre?: string;
+  authorId?: string;
 
   constructor(private apollo: Apollo) {}
 
@@ -57,7 +61,6 @@ export class AppComponent implements OnInit {
       })
       .valueChanges.subscribe(({ data, loading }) => {
         console.log(loading);
-        //console.log(data);
         this.allBooks = data.books;
       });
   }
@@ -87,13 +90,20 @@ export class AppComponent implements OnInit {
       .mutate({
         mutation: AddBook,
         variables: {
-          name: 'harry10',
-          genre: 'fantacy',
-          authorId: '60fb5ea016313d8298f0799c',
+          name: this.bookName,
+          genre: this.genre,
+          authorId: this.authorId,
         },
       })
+
       .subscribe(({ data }) => {
-        console.log('add a book', data);
+        const result: any = data;
+        const newBook: Book = result.addBook;
+        this.allBooks = [...this.allBooks, newBook];
       });
+  }
+
+  bookTrackBy(index: number, book: Book): string {
+    return book.id;
   }
 }
