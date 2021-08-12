@@ -130,7 +130,7 @@ export const EnvServiceProvider = {
 
 # apollo client, graphQL
 
-- ng add apollo-angular
+- $ng add apollo-angular
 
 - backend repository is hosted on [https://github.com/cxxyao2/graphql_mongo1](https://github.com/cxxyao2/graphql_mongo1)
 - screenshot
