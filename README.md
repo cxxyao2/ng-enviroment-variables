@@ -126,7 +126,7 @@ export const EnvServiceProvider = {
 - add this provider to app.module.ts provides
 - inject the service into components or other elements as needed
   > <strong>Advantage</strong>: When we need change the environemnt variables, we just modify the env.js file , refresh the browser and need not rebuild the app.
-  <hr/>
+  <div style="opacity:0;margin:20px;">...</div>
 
 # apollo client, graphQL
 
