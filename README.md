@@ -135,6 +135,6 @@ export const EnvServiceProvider = {
 - backend repository is hosted on [https://github.com/cxxyao2/graphql_mongo1](https://github.com/cxxyao2/graphql_mongo1)
 - screenshot
 
-![graphQL](assets/result1.png)
+> ![graphQL Result](https://github.com/cxxyao2/ng-enviroment-variables/blob/master/src/assets/result1.png)
 
 
