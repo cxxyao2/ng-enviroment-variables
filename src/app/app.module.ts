@@ -11,9 +11,10 @@ import { GraphQLModule } from './graphql.module';
 import { HttpClientModule } from '@angular/common/http';
 import { GraphQLExmapleComponent } from './graph-qlexmaple/graph-qlexmaple.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { MouseMoveComponent } from './mouse-move/mouse-move.component';
 
 @NgModule({
-  declarations: [AppComponent, HomeComponent, GraphQLExmapleComponent, PageNotFoundComponent],
+  declarations: [AppComponent, HomeComponent, GraphQLExmapleComponent, PageNotFoundComponent, MouseMoveComponent],
   imports: [
     BrowserModule,
     FormsModule,

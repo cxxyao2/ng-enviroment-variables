@@ -4,7 +4,7 @@ import { gql, Apollo } from 'apollo-angular';
 import { Book } from '../models/book';
 import { Author } from '../models/author';
 import { from, Observable, of } from 'rxjs';
-import { concatMap, map, switchMap, take } from 'rxjs/operators';
+import { concatAll, concatMap, map, switchMap, take } from 'rxjs/operators';
 
 const Get_Books = gql`
   query {
@@ -90,6 +90,23 @@ export class GraphQLExmapleComponent implements OnInit {
     from(['61153c5abe20fe124a4354a8', '61ce36ea453f1708be60ed48'])
       .pipe(
         concatMap((bookId: string) => this.getBooksBySameWriter(bookId)),
+        take(100)
+      )
+      .subscribe((data) => {
+        console.log('multiUser BooksList is', data?.data.booksByAuthorId);
+        this.BooksByAuthors = [
+          ...this.BooksByAuthors,
+          ...data?.data.booksByAuthorId,
+        ];
+      });
+  }
+
+  getBooksByMultiBookIdVer2() {
+    const obs1 = this.getBooksBySameWriter('61153c5abe20fe124a4354a8');
+    const obs2 = this.getBooksBySameWriter('61ce36ea453f1708be60ed48');
+    from([obs1,obs2])
+      .pipe(
+        concatAll(),
         take(100)
       )
       .subscribe((data) => {
