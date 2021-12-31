@@ -7,23 +7,74 @@
 
 <div class="container">
   <h3 class="m-2">Query and Mutation in GraphQL by Apollo Client</h3>
-  <form class="row g-3 m-2">
-    <div class="col-auto">
-      <label for="txtSearch" class="visually-hidden">Search By BookId</label>
-      <input
-        type="text"
-        id="txtSearch"
-        name="txtSearch"
-        class="form-control"
-        [(ngModel)]="bookId"
-        placeholder="BookId,e.g. 60fb61b6d5b7b184eb38204a"
-      />
+  <div *ngIf="errorMessage" class="text-danger">{{ errorMessage }}</div>
+  <form>
+    <div class="row g-3 m-2">
+      <div class="col-auto">
+        <label for="txtSearch" class="form-label">BookId:</label>
+        <input
+          type="text"
+          id="txtSearch"
+          name="txtSearch"
+          class="form-control"
+          [(ngModel)]="bookId"
+          placeholder="BookId,e.g. 60fb61b6d5b7b184eb38204a"
+        />
+      </div>
+      <div class="col-auto">
+        <button class="btn btn-primary" (click)="searchBookById()">
+          Find One Book
+        </button>
+
+        <button class="m-2 btn btn-warning" (click)="getBooksByMultiBookId()">
+          Books of multi authors
+        </button>
+      </div>
     </div>
-    <div class="col-auto">
-      <button class="btn btn-primary" (click)="searchBookById()">
-        Find One Book
-      </button>
+    <div class="border border-2 border-success">
+      <div>Books By the same author</div>
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Name</th>
+            <th scope="col">Genre</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let book of BooksByAuthors">
+            <td>{{ book.id }}</td>
+            <td>{{ book.name }}</td>
+            <td>{{ book.genre }}</td>
+          </tr>
+        </tbody>
+      </table>
     </div>
+
+    <div class="row g-3 m-2">
+      <div class="col-auto">
+        <label for="txtBooksSearch" class="visually-hidden"
+          >Search By AuthorId</label
+        >
+        <input
+          type="text"
+          id="txtBooksSearch"
+          name="txtBooksSearch"
+          class="form-control"
+          [(ngModel)]="authorId"
+          placeholder="authorId,e.g. 61ce3545453f1708be60ed46"
+        />
+      </div>
+      <div class="col-auto">
+        <button
+          class="btn btn-primary"
+          (click)="getBooksByAuthorId(this.authorId)"
+        >
+          Find books by AuthorId
+        </button>
+      </div>
+    </div>
+
     <div class="h-1 text-primary">...</div>
 
     <div class="col-auto">

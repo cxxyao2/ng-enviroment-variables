@@ -1,4 +1,4 @@
-# multiple configurations
+# multiple configurations and graphQL
 
 ## solution 1: multiple configurations angular.json
 
@@ -136,5 +136,3 @@ export const EnvServiceProvider = {
 - screenshot
 
 > ![graphQL Result](https://github.com/cxxyao2/ng-enviroment-variables/blob/master/src/assets/result1.png)
-
-
