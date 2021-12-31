@@ -9,9 +9,11 @@ import { EnvServiceProvider } from './env.service.provider';
 import { HomeComponent } from './home/home.component';
 import { GraphQLModule } from './graphql.module';
 import { HttpClientModule } from '@angular/common/http';
+import { GraphQLExmapleComponent } from './graph-qlexmaple/graph-qlexmaple.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 @NgModule({
-  declarations: [AppComponent, HomeComponent],
+  declarations: [AppComponent, HomeComponent, GraphQLExmapleComponent, PageNotFoundComponent],
   imports: [
     BrowserModule,
     FormsModule,
