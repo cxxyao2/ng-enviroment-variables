@@ -1,7 +1,8 @@
 <div class="container">
-  <div class="d-flex">
-    <div (document:mousemove="onMouseMove($event)") id="box"></div>
-    <div>some text</div>
+  <div class="d-flex parent">
+    <div class="leftChild" #leftChild></div>
+    <div  class="line" (mousedown)="onMouseDown($event)"  id="line"></div>
+    <div class="rightChild" #rightChild></div>
   </div>
 
 </div>
