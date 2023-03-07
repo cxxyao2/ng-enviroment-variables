@@ -1,5 +1,3 @@
-
-
 <hr class="dropdown-divider m-4" />
 
 <div class="container">
@@ -19,6 +17,15 @@
         />
       </div>
       <div class="col-auto">
+        <button
+          class="btn btn-primary"
+          (click)="refetchOneBookFromApolloCache()"
+        >
+          refetchone book from network
+        </button>
+        <button class="btn btn-primary" (click)="evictCache()">
+          evict cache
+        </button>
         <button class="btn btn-primary" (click)="searchBookById()">
           Find One Book
         </button>
@@ -26,7 +33,7 @@
         <button class="m-2 btn btn-warning" (click)="getBooksByMultiBookId()">
           Multi author1
         </button>
-         <button class="m-2 btn btn-info" (click)="getBooksByMultiBookIdVer2()">
+        <button class="m-2 btn btn-info" (click)="getBooksByMultiBookIdVer2()">
           Multi authors2
         </button>
       </div>

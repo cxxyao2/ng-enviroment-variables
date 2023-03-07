@@ -1,10 +1,13 @@
 <h1>Router App</h1>
 <nav>
-<ul>
-  <li><a routerLink="/home"  routerLinkActive="active">Home</a></li>
-  <li><a routerLink="/graphql"  routerLinkActive="active">Graphql</a></li>
-  <li><a routerLink="/mousemove"  routerLinkActive="active">MouseMove</a></li>
-
-</ul>
+  <ul>
+    <li><a routerLink="/home" routerLinkActive="active">Home</a></li>
+    <li><a routerLink="/graphql" routerLinkActive="active">Graphql</a></li>
+    <li><a routerLink="/mousemove" routerLinkActive="active">MouseMove</a></li>
+  </ul>
 </nav>
+<div>
+  <h2>This is a readonly component.</h2>
+  <app-graph-readonly></app-graph-readonly>
+</div>
 <router-outlet></router-outlet>

@@ -12,9 +12,10 @@ import { HttpClientModule } from '@angular/common/http';
 import { GraphQLExmapleComponent } from './graph-qlexmaple/graph-qlexmaple.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { MouseMoveComponent } from './mouse-move/mouse-move.component';
+import { GraphReadonlyComponent } from './graph-readonly/graph-readonly.component';
 
 @NgModule({
-  declarations: [AppComponent, HomeComponent, GraphQLExmapleComponent, PageNotFoundComponent, MouseMoveComponent],
+  declarations: [AppComponent, HomeComponent, GraphQLExmapleComponent, PageNotFoundComponent, MouseMoveComponent, GraphReadonlyComponent],
   imports: [
     BrowserModule,
     FormsModule,

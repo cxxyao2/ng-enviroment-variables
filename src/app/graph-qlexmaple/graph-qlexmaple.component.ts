@@ -32,7 +32,7 @@ const Get_OneBook = gql`
 `;
 
 const Get_BooksByAuthorId = gql`
-  query ($authorId: ID) {
+  query ($authorId: ID!) {
     booksByAuthorId(authorId: $authorId) {
       id
       name
@@ -104,11 +104,8 @@ export class GraphQLExmapleComponent implements OnInit {
   getBooksByMultiBookIdVer2() {
     const obs1 = this.getBooksBySameWriter('61153c5abe20fe124a4354a8');
     const obs2 = this.getBooksBySameWriter('61ce36ea453f1708be60ed48');
-    from([obs1,obs2])
-      .pipe(
-        concatAll(),
-        take(100)
-      )
+    from([obs1, obs2])
+      .pipe(concatAll(), take(100))
       .subscribe((data) => {
         console.log('multiUser BooksList is', data?.data.booksByAuthorId);
         this.BooksByAuthors = [
@@ -165,6 +162,19 @@ export class GraphQLExmapleComponent implements OnInit {
             this.allBooks = [];
             this.allBooks.push(this.searchBook);
           }
+
+          // todo test directly  modify cache          // test  readQuery and writeQuery
+          // Fetch the cached to-do item with ID 5
+          const { book } = this.apollo.client.readQuery({
+            query: Get_OneBook,
+            // Provide any required variables in this object.
+            // Variables of mismatched types will return `null`.
+            variables: {
+              id: this.bookId,
+            },
+          });
+
+          console.log('data1 is', book);
         },
         (err) => {
           this.errorMessage = err.toString();
@@ -188,6 +198,19 @@ export class GraphQLExmapleComponent implements OnInit {
           const result: any = data;
           const newBook: Book = result.addBook;
           this.allBooks = [...this.allBooks, newBook];
+
+          const oldbooks = this.apollo.client.readQuery({
+            query: Get_Books,
+          });
+
+          console.log('oldbooks is', oldbooks); // oldbooks.books
+          // approach 1: Works well. And all subscribers will be notified.
+          this.apollo.client.writeQuery({
+            query: Get_Books,
+            data: {
+              books: [...this.allBooks],
+            },
+          });
         },
         (err) => {
           this.errorMessage = err.toString();
@@ -219,5 +242,57 @@ export class GraphQLExmapleComponent implements OnInit {
           this.errorMessage = err.toString();
         }
       );
+  }
+
+  refetchOneBookFromApolloCache(cacheEntity = 'books'): void {
+    // this.apollo.client.cache.evict({
+    //   id: 'ROOT_QUERY',
+    //   fieldName: 'book',
+    //   args: { id: this.bookId },
+    // });
+
+    this.apollo.client.cache.modify({
+      id: 'ROOT_QUERY',
+      fields: {
+        [cacheEntity]: (record = [], { DELETE }) => {
+          return DELETE;
+        },
+      },
+    });
+  }
+
+  evictCache(): void {
+    // const result = this.apollo.client.cache.evict({
+    //   id: 'ROOT_QUERY',
+    //   fieldName: 'books',
+    // });
+    const result = this.apollo.client.cache.evict({
+      id: 'ROOT_QUERY',
+      fieldName: 'book',
+    });
+  }
+
+  pessimisticCustomCacheBatchUpdate<T>(
+    cacheEntity: string,
+    filters: (Partial<T> extends object ? Partial<T> : never)[]
+  ) {
+    this.apollo.client.cache.modify({
+      id: 'ROOT_QUERY',
+      fields: {
+        [cacheEntity]: (record = [], { DELETE }) => {
+          const hasObject = record.some((rec: T) =>
+            filters.some((obj) =>
+              Object.keys(obj).every((key) => {
+                const k = key as keyof T;
+                return rec[k] === obj[k];
+              })
+            )
+          );
+          if (hasObject) return DELETE;
+          if (record.length === 0) return DELETE;
+          return record;
+        },
+      },
+    });
   }
 }

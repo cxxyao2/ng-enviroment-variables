@@ -1,3 +1,4 @@
 export const environment = {
-  production: false,
+     userName: 'jenni',
+   production: 'undefined'
 };
