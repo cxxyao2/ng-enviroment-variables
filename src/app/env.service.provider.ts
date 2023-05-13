@@ -6,14 +6,14 @@ export const EnvServiceFactory = () => {
 
   // Read environment variables  from browser window
   const browserWindow = window || {};
-  const browserWindowEnv = browserWindow['__env'] || {};
+  const browserWindowEnv = (browserWindow as any).__env || {};
 
   // Assign environment variables from browser window to env
   // In the current implementation, properties from env.js
   // If needed, a deep merge can be performed
   for (const key in browserWindowEnv) {
     if (browserWindowEnv.hasOwnProperty(key)) {
-      env[key] = window['__env'][key];
+      env[key] = (window as any).__env[key];
     }
   }
 

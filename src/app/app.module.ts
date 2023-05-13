@@ -13,9 +13,11 @@ import { GraphQLExmapleComponent } from './graph-qlexmaple/graph-qlexmaple.compo
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { MouseMoveComponent } from './mouse-move/mouse-move.component';
 import { GraphReadonlyComponent } from './graph-readonly/graph-readonly.component';
+import { UpdateWithIdComponent } from './update-with-id/update-with-id.component';
+import { UpdateNonIdComponent } from './update-non-id/update-non-id.component';
 
 @NgModule({
-  declarations: [AppComponent, HomeComponent, GraphQLExmapleComponent, PageNotFoundComponent, MouseMoveComponent, GraphReadonlyComponent],
+  declarations: [AppComponent, HomeComponent, GraphQLExmapleComponent, PageNotFoundComponent, MouseMoveComponent, GraphReadonlyComponent, UpdateWithIdComponent, UpdateNonIdComponent],
   imports: [
     BrowserModule,
     FormsModule,
