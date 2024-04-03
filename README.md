@@ -1,5 +1,10 @@
 # multiple configurations and graphQL
 
+## start app
+```
+npm run newstart
+```
+
 ## solution 1: multiple configurations angular.json
 
 ```
