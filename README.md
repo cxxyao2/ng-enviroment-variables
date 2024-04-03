@@ -1,9 +1,14 @@
 # multiple configurations and graphQL
 
 ## start app
+
 ```
 npm run newstart
 ```
+
+### GraphQL
+
+- Queries, Mutations, Subscriptions examples are included.
 
 ## solution 1: multiple configurations angular.json
 
