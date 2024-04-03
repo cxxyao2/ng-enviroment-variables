@@ -15,9 +15,11 @@ import { MouseMoveComponent } from './mouse-move/mouse-move.component';
 import { GraphReadonlyComponent } from './graph-readonly/graph-readonly.component';
 import { UpdateWithIdComponent } from './update-with-id/update-with-id.component';
 import { UpdateNonIdComponent } from './update-non-id/update-non-id.component';
+import { UnicastMulticastComponent } from './unicast-multicast/unicast-multicast.component';
+import { GraphClientCsharpComponent } from './graph-client-csharp/graph-client-csharp.component';
 
 @NgModule({
-  declarations: [AppComponent, HomeComponent, GraphQLExmapleComponent, PageNotFoundComponent, MouseMoveComponent, GraphReadonlyComponent, UpdateWithIdComponent, UpdateNonIdComponent],
+  declarations: [AppComponent, HomeComponent, GraphQLExmapleComponent, PageNotFoundComponent, MouseMoveComponent, GraphReadonlyComponent, UpdateWithIdComponent, UpdateNonIdComponent, UnicastMulticastComponent, GraphClientCsharpComponent],
   imports: [
     BrowserModule,
     FormsModule,
